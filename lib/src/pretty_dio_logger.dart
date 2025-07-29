@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'dart:typed_data';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
@@ -63,7 +64,7 @@ class PrettyDioLogger extends Interceptor {
     this.error = true,
     this.maxWidth = 90,
     this.compact = true,
-    this.logPrint = print,
+    this.logPrint = printFunc,
     this.filter,
     this.enabled = true,
   });
@@ -362,6 +363,10 @@ class PrettyDioLogger extends Interceptor {
     }
     _printLine('╚');
   }
+}
+
+void printFunc(Object object) {
+  log(object.toString());
 }
 
 /// Filter arguments
